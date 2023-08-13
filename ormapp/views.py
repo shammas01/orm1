@@ -48,3 +48,13 @@ class ChapterEditView(APIView):
             serializer.save()
             return Response({'msg': 'Chapter edited'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    def delete(self, request, pk, format=None):
+        try:
+            chapter = Chapter.objects.get(pk=pk)
+        except Chapter.DoesNotExist:
+            return Response({'msg': 'Chapter not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        chapter.delete()
+        return Response({'msg': 'Chapter deleted'}, status=status.HTTP_204_NO_CONTENT)
