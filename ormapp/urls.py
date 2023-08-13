@@ -1,6 +1,6 @@
 from django.urls import path
-from . views import UserView
+from . views import ChapterView
 
 urlpatterns = [
-    path('chapter/',UserView.as_view())
+    path('chapter/',ChapterView.as_view())
 ]
